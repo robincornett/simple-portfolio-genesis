@@ -63,6 +63,7 @@ class SimplePortfolioGenesis_CustomFields {
 					'add_button'    => __( 'Add Another Tool', 'simple-portfolio-genesis' ),
 					'remove_button' => __( 'Remove Tool', 'simple-portfolio-genesis' ),
 				),
+				'repeatable' => true,
 			),
 		) );
 		return $fields;
