@@ -1,0 +1,145 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Simple Portfolio for Genesis\n"
+"POT-Creation-Date: 2015-10-15 07:51-0400\n"
+"PO-Revision-Date: 2015-10-15 07:41-0400\n"
+"Last-Translator: \n"
+"Language-Team: Robin Cornett <hello@robincornett.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: simple-portfolio-genesis.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/class-simpleportfoliogenesis-customfields.php:11
+msgid "Portfolio Fields"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-customfields.php:47
+msgid "Project Link"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-customfields.php:53
+msgid "Project Image"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-customfields.php:58
+msgid "Tools"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-customfields.php:62
+msgid "Tool"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-customfields.php:63
+msgid "Add Another Tool"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-customfields.php:64
+msgid "Remove Tool"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-customfields.php:74
+msgid "Name"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-customfields.php:79
+msgid "Link"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:15
+#: includes/class-simpleportfoliogenesis-posttype.php:16
+msgid "Portfolio"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:47
+#: includes/class-simpleportfoliogenesis-posttype.php:60
+msgid "Portfolio Categories"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:48
+#: includes/class-simpleportfoliogenesis-posttype.php:65
+msgid "Portfolio Category"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:49
+msgid "Search Portfolio Categories"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:50
+msgid "All Portfolio Categories"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:51
+msgid "Parent Portfolio Category"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:52
+msgid "Parent Portfolio Category:"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:53
+msgid "Edit Portfolio Category"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:54
+msgid "Update Portfolio Category"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:55
+msgid "Add New Portfolio Category"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:56
+msgid "New Portfolio Category Name"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:57
+msgid "Separate Portfolio categories with commas"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:58
+msgid "Add or remove Portfolio categories"
+msgstr ""
+
+#: includes/class-simpleportfoliogenesis-posttype.php:59
+msgid "Choose from the most used Portfolio categories"
+msgstr ""
+
+#: views/single-portfolio.php:30
+msgid "visit this project"
+msgstr ""
+
+#: views/single-portfolio.php:60
+msgid "Toolbox:"
+msgstr ""
+
+#: views/single-portfolio.php:70
+msgid "* affliate link"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Simple Portfolio for Genesis"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://robincornett.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "This sets up a simple portfolio CPT with tags."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Robin Cornett"
+msgstr ""

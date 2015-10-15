@@ -2,119 +2,36 @@
 
 class SimplePortfolioGenesis {
 
-	protected $post_type = 'portfolio';
-	protected $taxonomy  = 'portfolio_category';
-
-	public function __construct( $customfields ) {
+	public function __construct( $customfields, $post_type ) {
 		$this->customfields = $customfields;
+		$this->post_type    = $post_type;
 	}
 
 	public function run() {
-		add_action( 'pre_get_posts', array( $this, 'portfolio_number_posts' ), 9999 );
-		add_action( 'init', array( $this, 'register' ) );
-		add_action( 'after_setup_theme', array( $this, 'load_templates' ) );
+		add_action( 'init', array( $this->post_type, 'register' ) );
+		add_action( 'after_setup_theme', array( $this->post_type, 'load_templates' ) );
+		add_action( 'pre_get_posts', array( $this->post_type, 'portfolio_number_posts' ), 9999 );
+
 		add_action( 'cmb2_init', array( $this->customfields, 'register_fields' ) );
 		add_action( 'admin_enqueue_scripts', array( $this->customfields, 'admin_css' ) );
+
+		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		add_filter( 'display_featured_image_genesis_skipped_posttypes', array( $this, 'skip_portfolio_image' ) );
 
 		add_image_size( 'simpleportfolio', 440, 330, true );
 	}
 
-	public function register() {
-		$this->register_post_type();
-		$this->register_taxonomy();
+	/**
+	 * Set up text domain for translations
+	 *
+	 * @since 1.0.0
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain( 'simple-portfolio-genesis', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
-	function register_post_type() {
-		$labels = array(
-			'name'          => __( 'Portfolio', 'simple-portfolio-genesis' ),
-			'singular_name' => __( 'Portfolio', 'simple-portfolio-genesis' ),
-		);
-
-		$supports = array(
-			'title',
-			'thumbnail',
-			'editor',
-			'excerpt',
-			'genesis-cpt-archives-settings',
-		);
-
-		$post_type_args = array(
-			'labels'              => $labels,
-			'capability_type'     => 'page',
-			'exclude_from_search' => false,
-			'has_archive'         => true,
-			'hierarchical'        => false,
-			'menu_icon'           => 'dashicons-heart',
-			'public'              => true,
-			'rewrite'             => array( 'slug' => 'portfolio' ),
-			'show_in_nav_menus'   => false,
-			'supports'            => $supports,
-		);
-
-		register_post_type( $this->post_type, $post_type_args );
-
-	}
-
-	function register_taxonomy() {
-
-		$labels = array(
-			'name'                       => __( 'Portfolio Categories', 'simple-portfolio-genesis' ),
-			'singular_name'              => __( 'Portfolio Category', 'simple-portfolio-genesis' ),
-			'search_items'               => __( 'Search Portfolio Categories', 'simple-portfolio-genesis' ),
-			'all_items'                  => __( 'All Portfolio Categories', 'simple-portfolio-genesis' ),
-			'parent_item'                => __( 'Parent Portfolio Category', 'simple-portfolio-genesis' ),
-			'parent_item_colon'          => __( 'Parent Portfolio Category:', 'simple-portfolio-genesis' ),
-			'edit_item'                  => __( 'Edit Portfolio Category', 'simple-portfolio-genesis' ),
-			'update_item'                => __( 'Update Portfolio Category', 'simple-portfolio-genesis' ),
-			'add_new_item'               => __( 'Add New Portfolio Category', 'simple-portfolio-genesis' ),
-			'new_item_name'              => __( 'New Portfolio Category Name', 'simple-portfolio-genesis' ),
-			'separate_items_with_commas' => __( 'Separate Portfolio categories with commas', 'simple-portfolio-genesis' ),
-			'add_or_remove_items'        => __( 'Add or remove Portfolio categories', 'simple-portfolio-genesis' ),
-			'choose_from_most_used'      => __( 'Choose from the most used Portfolio categories', 'simple-portfolio-genesis' ),
-			'menu_name'                  => __( 'Portfolio Categories', 'simple-portfolio-genesis' ),
-		);
-
-		$args = array(
-			'labels'            => $labels,
-			'singular_label'    => __( 'Portfolio Category' ),
-			'public'            => true,
-			'rewrite'           => array( 'slug' => 'project' ),
-			'show_admin_column' => true,
-			'show_in_nav_menus' => false,
-			'show_ui'           => true,
-			'show_tagcloud'     => true,
-			'hierarchical'      => false,
-		);
-
-		register_taxonomy( $this->taxonomy, array( $this->post_type ), $args );
-	}
-
-	function portfolio_number_posts( $query ) {
-		if ( ! is_admin() && $query->is_main_query() && ( is_post_type_archive( 'portfolio' ) || is_tax( 'portfolio_category' ) ) ) {
-			$query->set( 'posts_per_page', 12 );
-		}
-	}
-
-	public function load_templates() {
-		$parent = basename( get_template_directory() );
-		if ( 'genesis' === $parent ) {
-			add_filter( 'archive_template', array( $this, 'load_archive_template' ) );
-			add_filter( 'single_template', array( $this, 'load_single_template' ) );
-		}
-	}
-
-	public function load_archive_template( $archive_template ) {
-		$terms = get_object_taxonomies( $this->post_type );
-		if ( is_post_type_archive( $this->post_type ) || is_tax( $terms ) ) {
-			$archive_template = plugin_dir_path( dirname( __FILE__ ) ) . '/views/archive-' . $this->post_type . '.php';
-		}
-		return $archive_template;
-	}
-
-	public function load_single_template( $single_template ) {
-		if ( is_singular( $this->post_type ) ) {
-			$single_template = plugin_dir_path( dirname( __FILE__ ) ) . '/views/single-' . $this->post_type . '.php';
-		}
-		return $single_template;
+	public function skip_portfolio_image( $post_type ) {
+		$post_type[] = is_singular( 'portfolio' );
+		return $post_type;
 	}
 }

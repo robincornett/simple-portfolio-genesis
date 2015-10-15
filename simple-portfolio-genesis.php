@@ -10,7 +10,7 @@
  *
  * Plugin Name:       Simple Portfolio for Genesis
  * Plugin URI:        http://robincornett.com
- * Description:       This sets up a simple Portfolio CPT with tags.
+ * Description:       This sets up a simple portfolio CPT with tags.
  * Author:            Robin Cornett
  * Author URI:        http://robincornett.com
  * Text Domain:       simple-portfolio-genesis
@@ -29,6 +29,7 @@ function simpleportfoliogenesis_require() {
 	$files = array(
 		'class-simpleportfoliogenesis',
 		'class-simpleportfoliogenesis-customfields',
+		'class-simpleportfoliogenesis-posttype',
 	);
 
 	foreach ( $files as $file ) {
@@ -38,9 +39,11 @@ function simpleportfoliogenesis_require() {
 simpleportfoliogenesis_require();
 
 $simpleportfoliogenesis_customfields = new SimplePortfolioGenesis_CustomFields();
+$simpleportfoliogenesis_posttype     = new SimplePortfolioGenesis_PostType();
 
 $simpleportfoliogenesis = new SimplePortfolioGenesis(
-	$simpleportfoliogenesis_customfields
+	$simpleportfoliogenesis_customfields,
+	$simpleportfoliogenesis_posttype
 );
 
 // Run the plugin
