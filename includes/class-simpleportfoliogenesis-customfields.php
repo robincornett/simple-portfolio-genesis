@@ -14,11 +14,39 @@ class SimplePortfolioGenesis_CustomFields {
 			'priority'     => 'high',
 		) );
 
+		$fields = $this->add_fields();
+
+		foreach ( $fields as $field ) {
+			$portfolio_metabox->add_field( array(
+				'name'       => $field['name'],
+				'id'         => $this->prefix . $field['id'],
+				'type'       => $field['type'],
+				'protocols'  => isset( $field['protocols'] ) ? $field['protocols'] : '',
+				'repeatable' => isset( $field['repeatable'] ) ? true : false,
+				'options'    => isset( $field['options'] ) ? $field['options'] : '',
+			) );
+		}
+
+		$group_fields = $this->add_group_fields();
+
+		foreach ( $group_fields as $field ) {
+			$portfolio_metabox->add_group_field( $this->prefix . 'group', array(
+				'name'       => $field['name'],
+				'id'         => $field['id'],
+				'type'       => $field['type'],
+				'protocols'  => isset( $field['protocols'] ) ? $field['protocols'] : '',
+				'repeatable' => isset( $field['repeatable'] ) ? true : false,
+				'options'    => isset( $field['options'] ) ? $field['options'] : '',
+			) );
+		}
+	}
+
+	protected function add_fields() {
 		$fields = apply_filters( 'simpleportfoliogenesis_customfields', array(
 			array(
-				'name' => __( 'Project Link', 'simple-portfolio-genesis' ),
-				'id'   => 'link',
-				'type' => 'text_url',
+				'name'      => __( 'Project Link', 'simple-portfolio-genesis' ),
+				'id'        => 'link',
+				'type'      => 'text_url',
 				'protocols' => array( 'http', 'https' ),
 			),
 			array(
@@ -37,18 +65,10 @@ class SimplePortfolioGenesis_CustomFields {
 				),
 			),
 		) );
+		return $fields;
+	}
 
-		foreach ( $fields as $field ) {
-			$portfolio_metabox->add_field( array(
-				'name'       => $field['name'],
-				'id'         => $this->prefix . $field['id'],
-				'type'       => $field['type'],
-				'protocols'  => isset( $field['protocols'] ) ? $field['protocols'] : '',
-				'repeatable' => isset( $field['repeatable'] ) ? true : false,
-				'options'    => isset( $field['options'] ) ? $field['options'] : '',
-			) );
-		}
-
+	protected function add_group_fields() {
 		$group_fields = apply_filters( 'simpleportfoliogenesis_groupfields', array(
 			array(
 				'name' => __( 'Name', 'simple-portfolio-genesis' ),
@@ -61,17 +81,7 @@ class SimplePortfolioGenesis_CustomFields {
 				'type' => 'text_url',
 			),
 		) );
-
-		foreach ( $group_fields as $field ) {
-			$portfolio_metabox->add_group_field( $this->prefix . 'group', array(
-				'name'       => $field['name'],
-				'id'         => $field['id'],
-				'type'       => $field['type'],
-				'protocols'  => isset( $field['protocols'] ) ? $field['protocols'] : '',
-				'repeatable' => isset( $field['repeatable'] ) ? true : false,
-				'options'    => isset( $field['options'] ) ? $field['options'] : '',
-			) );
-		}
+		return $group_fields;
 	}
 
 	public function admin_css() {
