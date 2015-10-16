@@ -12,7 +12,7 @@ class SimplePortfolioGenesis {
 		add_action( 'after_setup_theme', array( $this->post_type, 'load_templates' ) );
 		add_action( 'pre_get_posts', array( $this->post_type, 'portfolio_number_posts' ), 9999 );
 
-		add_action( 'cmb2_init', array( $this->customfields, 'register_fields' ) );
+		add_action( 'cmb2_init', array( $this->customfields, 'register_metabox' ) );
 		add_action( 'admin_enqueue_scripts', array( $this->customfields, 'admin_css' ) );
 
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
