@@ -10,7 +10,7 @@ class SimplePortfolioGenesis_PostType {
 		$this->register_taxonomy();
 	}
 
-	function register_post_type() {
+	public function register_post_type() {
 		$labels = array(
 			'name'          => __( 'Portfolio', 'simple-portfolio-genesis' ),
 			'singular_name' => __( 'Portfolio', 'simple-portfolio-genesis' ),
@@ -33,7 +33,7 @@ class SimplePortfolioGenesis_PostType {
 			'menu_icon'           => 'dashicons-heart',
 			'public'              => true,
 			'rewrite'             => array( 'slug' => 'portfolio' ),
-			'show_in_nav_menus'   => false,
+			'show_in_nav_menus'   => true,
 			'supports'            => $supports,
 		);
 
@@ -41,7 +41,7 @@ class SimplePortfolioGenesis_PostType {
 
 	}
 
-	function register_taxonomy() {
+	public function register_taxonomy() {
 
 		$labels = array(
 			'name'                       => __( 'Portfolio Categories', 'simple-portfolio-genesis' ),
@@ -75,6 +75,9 @@ class SimplePortfolioGenesis_PostType {
 		register_taxonomy( $this->taxonomy, array( $this->post_type ), $args );
 	}
 
+	/**
+	 * @param $query \WP_Query
+	 */
 	public function portfolio_number_posts( $query ) {
 		$terms = get_object_taxonomies( $this->post_type );
 		if ( ! is_admin() && $query->is_main_query() && ( is_post_type_archive( 'portfolio' ) || is_tax( $terms ) ) ) {
