@@ -6,9 +6,12 @@ class SimplePortfolioGenesis_CustomFields {
 
 	/**
 	 * Register the portfolio post type metabox
-	 * @return CMB2 metabox
 	 */
 	public function register_metabox() {
+
+		if ( function_exists( 'sixtenpress_register_custom_fields' ) ) {
+			return;
+		}
 
 		$portfolio_metabox = new_cmb2_box( array(
 			'id'           => $this->prefix . 'fields',
@@ -24,7 +27,9 @@ class SimplePortfolioGenesis_CustomFields {
 
 	/**
 	 * Define metabox fields
+	 *
 	 * @param  string $box portfolio_metabox
+	 *
 	 * @return array      fields for portfolio post type
 	 */
 	protected function define_fields( $box ) {
@@ -41,10 +46,10 @@ class SimplePortfolioGenesis_CustomFields {
 				'type' => 'file',
 			),
 			array(
-				'name'    => __( 'Tools', 'simple-portfolio-genesis' ),
-				'id'      => 'group',
-				'type'    => 'group',
-				'options' => array(
+				'name'       => __( 'Tools', 'simple-portfolio-genesis' ),
+				'id'         => 'group',
+				'type'       => 'group',
+				'options'    => array(
 					'group_title'   => __( 'Tool', 'simple-portfolio-genesis' ),
 					'add_button'    => __( 'Add Another Tool', 'simple-portfolio-genesis' ),
 					'remove_button' => __( 'Remove Tool', 'simple-portfolio-genesis' ),
@@ -57,8 +62,10 @@ class SimplePortfolioGenesis_CustomFields {
 
 	/**
 	 * Register CMB2 fields
+	 *
 	 * @param  array $fields all metabox fields
-	 * @param  string $box    portfolio_metabox
+	 * @param  string $box   portfolio_metabox
+	 *
 	 * @return CMB2 metabox
 	 */
 	protected function register_fields( $fields, $box ) {
@@ -76,7 +83,9 @@ class SimplePortfolioGenesis_CustomFields {
 
 	/**
 	 * Define group/repeating fields
+	 *
 	 * @param  string $box portfolio_metabox
+	 *
 	 * @return array      all fields for the group metabox
 	 */
 	protected function define_group_fields( $box ) {
@@ -97,8 +106,10 @@ class SimplePortfolioGenesis_CustomFields {
 
 	/**
 	 * Register fields for the group metabox
+	 *
 	 * @param  array $fields fields defined above
-	 * @param  string $box    portfolio_metabox
+	 * @param  string $box   portfolio_metabox
+	 *
 	 * @return all registered fields
 	 */
 	protected function register_group_fields( $fields, $box ) {
@@ -124,14 +135,25 @@ class SimplePortfolioGenesis_CustomFields {
 		} ?>
 
 		<style type="text/css">
-		@media only screen and (min-width: 799px) {
-			.cmb2-id--simpleportfoliogenesis-group-0-title,
-			.cmb2-id--simpleportfoliogenesis-group-0-link { float: left; width: 49%; margin-right: 1% !important; }
-			.cmb2-id--simpleportfoliogenesis-group-0-title .cmb-th,
-			.cmb2-id--simpleportfoliogenesis-group-0-link .cmb-th { width: 100% !important; }
-			.cmb2-id--simpleportfoliogenesis-group-0-title .cmb-td,
-			.cmb2-id--simpleportfoliogenesis-group-0-link .cmb-td { clear: both; width: 100% !important; }
-		}
+			@media only screen and (min-width: 799px) {
+				.cmb2-id--simpleportfoliogenesis-group-0-title,
+				.cmb2-id--simpleportfoliogenesis-group-0-link {
+					float: left;
+					width: 49%;
+					margin-right: 1% !important;
+				}
+
+				.cmb2-id--simpleportfoliogenesis-group-0-title .cmb-th,
+				.cmb2-id--simpleportfoliogenesis-group-0-link .cmb-th {
+					width: 100% !important;
+				}
+
+				.cmb2-id--simpleportfoliogenesis-group-0-title .cmb-td,
+				.cmb2-id--simpleportfoliogenesis-group-0-link .cmb-td {
+					clear: both;
+					width: 100% !important;
+				}
+			}
 		</style> <?php
 	}
 }
