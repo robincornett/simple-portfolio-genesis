@@ -55,7 +55,7 @@ function simpleportfoliogenesis_portfolio_image() {
 function simpleportfoliogenesis_portfolio_tools() {
 	$entries = get_post_meta( get_the_ID(), '_simpleportfoliogenesis_group', true );
 	if ( ! $entries ) {
-		return;
+		return '';
 	}
 	$content  = sprintf( '<h2>%s</h2>', __( 'Toolbox:', 'simple-portfolio-genesis' ) );
 	$content .= '<ul>';
@@ -67,7 +67,7 @@ function simpleportfoliogenesis_portfolio_tools() {
 		$content .= '</li>';
 	}
 	$content .= '</ul>';
-	$content .= sprintf( '<p class="entry-meta">%s</p>', __( '* affliate link', 'simple-portfolio-genesis' ) );
+	$content .= sprintf( '<p class="entry-meta">%s</p>', __( '* affiliate link', 'simple-portfolio-genesis' ) );
 	return $content;
 }
 
